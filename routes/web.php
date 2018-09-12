@@ -11,10 +11,12 @@
 |
 */
 
+use App\Http\Middleware\CheckAge;
+
 Route::get('/', function () {
     return "hello world";
-});
-Route::get('/test', 'TestController@show')->name('test');
+})->name('home');
+Route::get('/test', 'TestController@show')->name('test')->middleware(CheckAge::class);
 
 
 Route::get('/user/{id}', function ($id) {

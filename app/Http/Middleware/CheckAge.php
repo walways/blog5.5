@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Route;
+
 
 class CheckAge
 {
@@ -15,6 +17,12 @@ class CheckAge
      */
     public function handle($request, Closure $next)
     {
+
+        if($request->get('age') <= 200){
+            //var_dump($request->get('age'));die;
+           Route::redirect('/test','/',302);
+
+        }
 
         return $next($request);
     }
